@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://hv5sfb0m8ub6"]
+
+[ext_resource type="Texture2D" uid="uid://cojjreg2vvv0" path="res://assets/PhysicsCarGameAssets/Images/Pickups/Coin5.png" id="1_t6aq8"]
+[ext_resource type="FontFile" uid="uid://brvvp7o470qwc" path="res://assets/fredoka-one/FredokaOne-Regular.ttf" id="2_w65tj"]
+[ext_resource type="Texture2D" uid="uid://crkqjgfqftpn2" path="res://assets/PhysicsCarGameAssets/Images/Pickups/Fuel.png" id="3_2xml8"]
+
+[sub_resource type="SystemFont" id="SystemFont_i471u"]
+subpixel_positioning = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8x65"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Hud" type="CanvasLayer"]
+
+[node name="Coin" type="TextureRect" parent="."]
+offset_left = 29.0
+offset_top = 148.0
+offset_right = 156.0
+offset_bottom = 275.0
+texture = ExtResource("1_t6aq8")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Coin"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 138.0
+offset_top = 23.0
+offset_right = 178.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource("2_w65tj")
+theme_override_font_sizes/font_size = 60
+text = "0"
+
+[node name="Fuel" type="TextureRect" parent="."]
+offset_left = 32.0
+offset_top = 28.0
+offset_right = 157.0
+offset_bottom = 150.0
+texture = ExtResource("3_2xml8")
+expand_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Fuel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 133.0
+offset_top = 25.0
+offset_right = 426.0
+offset_bottom = 95.0
+theme_override_fonts/font = SubResource("SystemFont_i471u")
+theme_override_styles/background = SubResource("StyleBoxFlat_n8x65")
+value = 50.0
+show_percentage = false

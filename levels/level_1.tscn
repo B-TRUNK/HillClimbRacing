@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://bwp1oiqd8yd1s"]
+
+[ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_jijuu"]
+[ext_resource type="PackedScene" uid="uid://bfyv34ymnrqyf" path="res://scenes/player.tscn" id="1_ky3tq"]
+[ext_resource type="Texture2D" uid="uid://cgugadwr3yjby" path="res://assets/PhysicsCarGameAssets/Images/Terrain/DirtBG.png" id="2_gfss1"]
+[ext_resource type="Script" path="res://scripts/lvl_terrain.gd" id="2_wqvh8"]
+[ext_resource type="Texture2D" uid="uid://mc0sj51if6pp" path="res://assets/PhysicsCarGameAssets/Images/Terrain/Grass.png" id="3_jryt8"]
+[ext_resource type="PackedScene" uid="uid://cxyq3a6yd8w36" path="res://scenes/coin.tscn" id="6_fc15x"]
+[ext_resource type="PackedScene" uid="uid://qt7dps6wpro0" path="res://scenes/fuel.tscn" id="7_67ia1"]
+[ext_resource type="PackedScene" uid="uid://hv5sfb0m8ub6" path="res://scenes/hud.tscn" id="7_e518c"]
+
+[sub_resource type="Curve2D" id="Curve2D_ryi65"]
+_data = {
+"points": PackedVector2Array(378.78, 443.169, -378.78, -443.169, -813, 114, -199.51, 182.271, 199.51, -182.271, -1106, 1429, -2.89145, 257.324, 2.89145, -257.324, 2551, 1339, 26.023, 117.94, -26.023, -117.94, 5923, 1401, 14.4572, -78.6267, -14.4572, 78.6267, 9460, 1248, -54.9375, 192.993, 54.9375, -192.993, 14023, 1486, -372.997, -203.715, 372.997, 203.715, 17959, 1303, -676.599, 7.14788, 676.599, -7.14788, 20733, 1249, 135.898, 60.757, -135.898, -60.757, 21437, -943, 69.3948, 28.5915, -69.3948, -28.5915, 20172, -389, 11.5658, 157.253, -11.5658, -157.253, 18853, 688, 54.9375, 257.324, -54.9375, -257.324, 18199, -380, 46.2632, 150.105, -46.2632, -150.105, 17298, 495, 46.2632, 89.3485, -46.2632, -89.3485, 16895, 274, -17.3487, 200.141, 17.3487, -200.141, 15848, 378, 190.836, -14.2958, -190.836, 14.2958, 15194, -705, 92.5264, 239.454, -92.5264, -239.454, 13843, 382, 346.974, 192.993, -346.974, -192.993, 13382, 8, 86.7435, 164.401, -86.7435, -164.401, 12407, 372, 130.115, 175.123, -130.115, -175.123, 11603, 76, 34.6974, 67.9049, -34.6974, -67.9049, 10651, -175, 54.9375, 42.8873, -54.9375, -42.8873, 9689, -100, 86.7435, 100.07, -86.7435, -100.07, 9157, 154, 115.658, 218.01, -115.658, -218.01, 8488, -25, 78.0691, 42.8873, -78.0691, -42.8873, 7888, -136, 130.115, 46.4612, -130.115, -46.4612, 7370, 46, 231.316, -142.958, -231.316, 142.958, 6583, 200, 586.964, 142.958, -586.964, -142.958, 5603, -375, 101.201, -39.3133, -101.201, 39.3133, 4155.21, 159, 75.1777, -25.0176, -75.1777, 25.0176, 3645, 47, 150.355, 14.2958, -150.355, -14.2958, 3105, -192, 118.549, -50.0352, -118.549, 50.0352, 2523.39, 96, 83.852, 46.4612, -83.852, -46.4612, 2167, 81, 69.3948, 46.4612, -69.3948, -46.4612, 1713, 146, 72.2862, 57.183, -72.2862, -57.183, 1273, 145, 75.1777, 67.9049, -75.1777, -67.9049, 934, 121, 104.092, 32.1655, -104.092, -32.1655, -221, 41, 0, 0, 0, 0, -813, 114)
+}
+point_count = 38
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_jijuu")
+
+[node name="Hud" parent="." instance=ExtResource("7_e518c")]
+
+[node name="Terrain" type="StaticBody2D" parent="."]
+position = Vector2(-1, 1080)
+script = ExtResource("2_wqvh8")
+
+[node name="Path2D" type="Path2D" parent="Terrain"]
+position = Vector2(365, -337)
+scale = Vector2(1.23604, 1)
+curve = SubResource("Curve2D_ryi65")
+
+[node name="Line2D" type="Line2D" parent="Terrain"]
+texture_filter = 1
+width = 30.0
+texture = ExtResource("3_jryt8")
+texture_mode = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="Terrain"]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("2_gfss1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain"]
+
+[node name="Player" parent="." instance=ExtResource("1_ky3tq")]
+position = Vector2(-53, 458)
+
+[node name="Fuel" parent="." instance=ExtResource("7_67ia1")]
+position = Vector2(4189, 935)
+
+[node name="Coin" parent="." instance=ExtResource("6_fc15x")]
+position = Vector2(3884, 915)
+
+[node name="Coin2" parent="." instance=ExtResource("6_fc15x")]
+position = Vector2(2087, 948)
+
+[node name="Coin3" parent="." instance=ExtResource("6_fc15x")]
+position = Vector2(487, 968)

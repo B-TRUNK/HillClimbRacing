@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfyv34ymnrqyf"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_7ujso"]
+[ext_resource type="PackedScene" uid="uid://45ti2f87vcal" path="res://scenes/wheel.tscn" id="2_6ptdh"]
+[ext_resource type="Texture2D" uid="uid://cg3kkaf3n4aqx" path="res://assets/PhysicsCarGameAssets/Images/Car/Car.png" id="3_ylgsr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhppc"]
+size = Vector2(442, 161)
+
+[node name="Player" type="RigidBody2D" groups=["player"]]
+gravity_scale = 10.0
+script = ExtResource("1_7ujso")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(-152, 104)
+node_a = NodePath("..")
+node_b = NodePath("Wheel")
+softness = 3.0
+
+[node name="Wheel" parent="PinJoint2D" instance=ExtResource("2_6ptdh")]
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(109, 108)
+node_a = NodePath("..")
+node_b = NodePath("Wheel")
+softness = 3.0
+
+[node name="Wheel" parent="PinJoint2D2" instance=ExtResource("2_6ptdh")]
+
+[node name="Car" type="Sprite2D" parent="."]
+texture = ExtResource("3_ylgsr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 19.5)
+shape = SubResource("RectangleShape2D_bhppc")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 27.0
+offset_top = -133.0
+offset_right = 67.0
+offset_bottom = -47.0
+theme_override_font_sizes/font_size = 60
+text = "0
+"
